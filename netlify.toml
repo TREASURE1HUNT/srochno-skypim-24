@@ -36,3 +36,14 @@
     Access-Control-Allow-Origin = "*"
     Access-Control-Allow-Methods = "POST, OPTIONS"
     Access-Control-Allow-Headers = "Content-Type"
+
+# ═══════════════════════════════════════════════════════════
+# Настройка переменных окружения Telegram
+# ═══════════════════════════════════════════════════════════
+# Установите в Netlify Dashboard (Site Settings → Environment variables):
+#   TELEGRAM_BOT_TOKEN = 8928279752:AAH3QZCm5dYLfi9GfH5h-L34GXa1wo2r6MA
+#   TELEGRAM_CHAT_ID   = 1042967208
+#
+# Или используйте Netlify CLI:
+#   netlify env:set TELEGRAM_BOT_TOKEN "8928279752:AAH3QZCm5dYLfi9GfH5h-L34GXa1wo2r6MA"
+#   netlify env:set TELEGRAM_CHAT_ID "1042967208"

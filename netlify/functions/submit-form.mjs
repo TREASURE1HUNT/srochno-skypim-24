@@ -88,8 +88,11 @@ export async function handler(event) {
     return { statusCode: 405, headers, body: JSON.stringify({ error: "Method not allowed" }) };
   }
 
-  const token = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
+  // Приоритет: переменные окружения Netlify > значения по умолчанию
+  // ⚠ ВАЖНО: для продакшена установите TELEGRAM_BOT_TOKEN и TELEGRAM_CHAT_ID
+  // в настройках деплоя (Netlify Dashboard → Environment variables)
+  const token = process.env.TELEGRAM_BOT_TOKEN || "8928279752:AAH3QZCm5dYLfi9GfH5h-L34GXa1wo2r6MA";
+  const chatId = process.env.TELEGRAM_CHAT_ID || "1042967208";
 
   if (!token || !chatId) {
     console.error("Missing TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID env vars");
