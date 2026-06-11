@@ -1,117 +1,69 @@
-// Netlify function to handle form submissions and send to Telegram
-// Supports both PAFE form builder and Elementor Pro forms
+// Netlify function: отправка заявок в Telegram
 
-const TELEGRAM_BOT_TOKEN = "8928279752:AAH3QZCm5dYLfi9GfH5h-L34GXa1wo2r6MA";
-const TELEGRAM_CHAT_ID = "@skupkaauto24_bot";
+const FIELD_LABELS = {
+  mod: "Марка и модель",
+  vip: "Год выпуска",
+  kor: "Коробка передач",
+  pro: "Пробег",
+  sost: "Состояние",
+  vl: "Количество владельцев",
+  obr: "Обременения",
+  mest: "Местоположение",
+  tel: "Телефон",
+  field_33e91bb: "Марка",
+  field_4bc3582: "Модель",
+  field_c744db9: "Год выпуска",
+  email12133: "Телефон",
+  field_f84371f: "Телефон",
+  name: "Имя",
+  form_type: "Тип формы",
+};
 
-// Helper to send a message to Telegram
-async function sendTelegramMessage(message) {
-  const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-  
+async function sendTelegramMessage(token, chatId, message) {
+  const url = `https://api.telegram.org/bot${token}/sendMessage`;
   const response = await fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      chat_id: TELEGRAM_CHAT_ID,
+      chat_id: chatId,
       text: message,
       parse_mode: "HTML",
       disable_web_page_preview: true,
     }),
   });
-
   const data = await response.json();
   if (!data.ok) {
     console.error("Telegram API error:", data);
-    throw new Error(`Telegram API error: ${data.description}`);
+    throw new Error(data.description || "Telegram API error");
   }
   return data;
 }
 
-// Extract form data from the request body
-function extractFormData(body, headers) {
-  const contentType = headers["content-type"] || "";
-  
+function parseBody(body, contentType) {
+  if (!body) return {};
+
   if (contentType.includes("application/json")) {
     return JSON.parse(body);
   }
-  
-  // Handle URL-encoded form data (PAFE format)
-  if (contentType.includes("application/x-www-form-urlencoded")) {
-    const params = new URLSearchParams(body);
-    const data = {};
-    for (const [key, value] of params.entries()) {
-      // Handle form_fields[key] format used by PAFE
-      const match = key.match(/^form_fields\[(.+?)\]$/);
-      if (match) {
-        data[match[1]] = value;
-      } else {
-        data[key] = value;
-      }
-    }
-    return data;
+
+  const params = new URLSearchParams(body);
+  const data = {};
+  for (const [key, value] of params.entries()) {
+    const match = key.match(/^form_fields\[(.+?)\]$/);
+    data[match ? match[1] : key] = value;
   }
-  
-  // Handle multipart form data
-  if (contentType.includes("multipart/form-data")) {
-    // For simplicity, parse what we can
-    const data = {};
-    const pairs = body.split("&");
-    for (const pair of pairs) {
-      const [key, val] = pair.split("=").map(decodeURIComponent);
-      const match = key.match(/^form_fields\[(.+?)\]$/);
-      if (match) {
-        data[match[1]] = val;
-      } else {
-        data[key] = val;
-      }
-    }
-    return data;
-  }
-  
-  // Fallback: parse as URL params
-  try {
-    const params = new URLSearchParams(body);
-    const data = {};
-    for (const [key, value] of params.entries()) {
-      const match = key.match(/^form_fields\[(.+?)\]$/);
-      if (match) {
-        data[match[1]] = value;
-      } else {
-        data[key] = value;
-      }
-    }
-    return data;
-  } catch {
-    return { raw: body };
-  }
+  return data;
 }
 
-// Build a formatted message from form data
-function buildFormattedMessage(data) {
-  // Determine form type and extract relevant fields
-  const fields = {
-    "Марка и модель": data.mod || data["form_fields[mod]"] || data.field_33e91bb || "",
-    "Год выпуска": data.vip || data["form_fields[vip]"] || data.field_c744db9 || "",
-    "Коробка передач": data.kor || data["form_fields[kor]"] || "",
-    "Пробег": data.pro || data["form_fields[pro]"] || "",
-    "Состояние": data.sost || data["form_fields[sost]"] || "",
-    "Владельцев": data.vl || data["form_fields[vl]"] || "",
-    "Обременения": data.obr || data["form_fields[obr]"] || "",
-    "Местоположение": data.mest || data["form_fields[mest]"] || "",
-    "Телефон": data.tel || data["form_fields[tel]"] || data.field_f84371f || data.email12133 || "",
-    "Модель": data.field_4bc3582 || "",
-    "Имя": data.field_33e91bb || data.name || "",
-  };
-
-  // Filter out empty fields
-  const nonEmpty = Object.entries(fields).filter(([_, v]) => v && v.trim());
-
-  // Build message
-  let message = "<b>📩 Новая заявка с сайта срочноскупим24</b>\n";
+function buildMessage(data) {
+  const skip = new Set(["action", "nonce", "post_id", "form_id", "referer_title", "queried_id", "redirect", "remote_ip"]);
+  let message = "<b>📩 Новая заявка — срочноскупим24</b>\n";
   message += "━━━━━━━━━━━━━━━━\n";
 
-  for (const [label, value] of nonEmpty) {
-    message += `<b>${label}:</b> ${value}\n`;
+  for (const [key, value] of Object.entries(data)) {
+    if (skip.has(key) || !value || !String(value).trim()) continue;
+    const label = FIELD_LABELS[key] || key;
+    message += `<b>${label}:</b> ${String(value).trim()}\n`;
   }
 
   message += "━━━━━━━━━━━━━━━━\n";
@@ -120,49 +72,44 @@ function buildFormattedMessage(data) {
   return message;
 }
 
-// Main handler
 export async function handler(event) {
   const headers = {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Headers": "Content-Type",
     "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Content-Type": "application/json",
   };
 
-  // Handle CORS preflight
   if (event.httpMethod === "OPTIONS") {
-    return {
-      statusCode: 200,
-      headers,
-      body: "",
-    };
+    return { statusCode: 200, headers, body: "" };
   }
 
-  // Only accept POST
   if (event.httpMethod !== "POST") {
+    return { statusCode: 405, headers, body: JSON.stringify({ error: "Method not allowed" }) };
+  }
+
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+
+  if (!token || !chatId) {
+    console.error("Missing TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID env vars");
     return {
-      statusCode: 405,
+      statusCode: 500,
       headers,
-      body: JSON.stringify({ error: "Method not allowed" }),
+      body: JSON.stringify({ success: false, message: "Сервер не настроен" }),
     };
   }
 
   try {
-    // Parse form data
-    const formData = extractFormData(event.body, event.headers);
-    
-    // Build formatted message
-    const message = buildFormattedMessage(formData);
-    
-    // Send to Telegram
-    await sendTelegramMessage(message);
+    const contentType = event.headers["content-type"] || event.headers["Content-Type"] || "";
+    const formData = parseBody(event.body, contentType);
+    const message = buildMessage(formData);
 
-    // Return success response (PAFE expects JSON)
+    await sendTelegramMessage(token, chatId, message);
+
     return {
       statusCode: 200,
-      headers: {
-        ...headers,
-        "Content-Type": "application/json",
-      },
+      headers,
       body: JSON.stringify({
         success: true,
         message: "Спасибо! Ваша заявка принята. Ожидайте, с вами свяжется оператор.",
@@ -170,16 +117,12 @@ export async function handler(event) {
     };
   } catch (error) {
     console.error("Error processing form:", error);
-
     return {
-      statusCode: 200, // Return 200 so the form doesn't show an error to the user
-      headers: {
-        ...headers,
-        "Content-Type": "application/json",
-      },
+      statusCode: 200,
+      headers,
       body: JSON.stringify({
-        success: true,
-        message: "Спасибо! Ваша заявка принята.",
+        success: false,
+        message: "Не удалось отправить заявку. Позвоните нам: +7 913 514 11 22",
       }),
     };
   }

@@ -8,9 +8,31 @@
   to = "/.netlify/functions/submit-form"
   status = 200
 
+[[redirects]]
+  from = "/wp-content/*"
+  to = "/assets/wp-content/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/wp-includes/*"
+  to = "/assets/wp-includes/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/wp-json/*"
+  to = "/thankyou.html"
+  status = 200
+
 [[headers]]
   for = "/assets/*"
   [headers.values]
     Access-Control-Allow-Origin = "*"
     Access-Control-Allow-Methods = "GET, OPTIONS"
     Access-Control-Allow-Headers = "*"
+
+[[headers]]
+  for = "/.netlify/functions/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "POST, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type"

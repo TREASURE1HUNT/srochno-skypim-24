@@ -1,8 +1,4 @@
-# Redirect WordPress AJAX endpoint to our Netlify function
 /wp-admin/admin-ajax.php  /.netlify/functions/submit-form  200
-
-# WordPress REST API redirects (not critical but good to have)
+/wp-content/*  /assets/wp-content/:splat  200
+/wp-includes/*  /assets/wp-includes/:splat  200
 /wp-json/*  /thankyou.html  200
-
-# Font Awesome CORS fix - serve local files
-# (already handled by local assets)

@@ -1,0 +1,87 @@
+/* Progress bars — работают без Elementor JS chunks */
+.elementor-progress-bar[data-max] {
+  width: calc(var(--progress, 0) * 1%);
+}
+.elementor-progress-bar[data-max="25"] { --progress: 25; }
+.elementor-progress-bar[data-max="50"] { --progress: 50; }
+.elementor-progress-bar[data-max="75"] { --progress: 75; }
+.elementor-progress-bar[data-max="100"] { --progress: 100; }
+
+/* Мобильное меню */
+.elementor-nav-menu--dropdown.elementor-nav-menu__container {
+  display: none;
+}
+.elementor-nav-menu--dropdown.elementor-nav-menu__container.is-open {
+  display: block;
+}
+
+/* Попапы */
+.site-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 99998;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.site-popup-overlay.is-visible {
+  display: flex;
+}
+.site-popup-overlay .elementor-location-popup {
+  position: relative;
+  z-index: 99999;
+  max-height: 90vh;
+  overflow-y: auto;
+  max-width: 560px;
+  width: 100%;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+}
+.site-popup-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  z-index: 100000;
+  background: none;
+  border: none;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  color: #333;
+  padding: 4px 8px;
+}
+
+/* Мультистеп-форма */
+.pafe-multi-step-form {
+  visibility: visible !important;
+}
+.pafe-multi-step-form .elementor-top-section.elementor-section {
+  display: none;
+}
+.pafe-multi-step-form .elementor-top-section.elementor-section.is-active {
+  display: block;
+}
+.pafe-multi-step-form .elementor-invisible {
+  visibility: visible !important;
+  animation: none !important;
+}
+
+/* Сообщения формы */
+.elementor-message-success.is-visible,
+.elementor-message-danger.is-visible {
+  display: block !important;
+  margin-top: 16px;
+  padding: 12px 16px;
+  border-radius: 4px;
+}
+.elementor-message-success.is-visible {
+  background: #d4edda;
+  color: #155724;
+}
+.elementor-message-danger.is-visible {
+  background: #f8d7da;
+  color: #721c24;
+}
