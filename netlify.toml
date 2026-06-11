@@ -1,0 +1,16 @@
+[build]
+  command = "echo 'Static site - no build required'"
+  functions = "netlify/functions"
+  publish = "."
+
+[[redirects]]
+  from = "/wp-admin/admin-ajax.php"
+  to = "/.netlify/functions/submit-form"
+  status = 200
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, OPTIONS"
+    Access-Control-Allow-Headers = "*"
