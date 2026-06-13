@@ -212,14 +212,108 @@ input[name="field_summ_copy"]::after {
     margin-top: 10px !important;
 }
 
-/* Floating social buttons */
-.elementor-element-float-tg a.elementor-icon {
-    background-color: #0088cc !important;
-    color: #fff !important;
-    fill: #fff !important;
+/* ===== MOBILE FIXES ===== */
+
+/* 1. Floating buttons — позиционирование в правом нижнем углу */
+@media (max-width: 766px) {
+    /* Телефон */
+    .elementor-element-cb2f7f8.elementor-fixed {
+        position: fixed !important;
+        bottom: 100px !important;
+        right: 15px !important;
+        z-index: 9999 !important;
+    }
+    .elementor-element-cb2f7f8 .elementor-icon {
+        width: 56px !important;
+        height: 56px !important;
+        font-size: 22px !important;
+        background-color: #3FA703 !important;
+        color: #fff !important;
+        fill: #fff !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    /* Telegram */
+    .elementor-element-float-tg.elementor-fixed {
+        position: fixed !important;
+        bottom: 170px !important;
+        right: 15px !important;
+        z-index: 9999 !important;
+    }
+    .elementor-element-float-tg .elementor-icon {
+        width: 56px !important;
+        height: 56px !important;
+        font-size: 22px !important;
+        background-color: #0088cc !important;
+        color: #fff !important;
+        fill: #fff !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
 }
 
-</style>
+/* 2. Анимация нажатия */
+.elementor-element-cb2f7f8 .elementor-icon,
+.elementor-element-float-tg .elementor-icon {
+    transition: transform 0.2s ease !important;
+}
+.elementor-element-cb2f7f8 .elementor-icon:active,
+.elementor-element-float-tg .elementor-icon:active {
+    transform: scale(0.9) !important;
+}
+
+/* 3. Контактная секция — центрирование на мобильных */
+@media (max-width: 766px) {
+    .elementor-element-88191f4 .elementor-icon-list-items {
+        text-align: center !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    .elementor-element-88191f4 .elementor-icon-list-item {
+        justify-content: center !important;
+        width: auto !important;
+    }
+    /* Заголовки в контактах */
+    .elementor-element-4743332 .elementor-heading-title,
+    .elementor-element-dd07855 .elementor-heading-title {
+        text-align: center !important;
+    }
+    /* Скрываем "свяжитесь с нами" на мобильных, т.к. есть "Работаем круглосуточно" */
+    .elementor-element-dd07855 {
+        display: none !important;
+    }
+}
+
+/* 4. Общие мобильные улучшения */
+@media (max-width: 766px) {
+    /* Hero секция */
+    .elementor-element-71c73b55 {
+        padding-top: 20px !important;
+        padding-bottom: 20px !important;
+        overflow-x: hidden;
+    }
+    /* Заголовки — перенос */
+    .elementor-heading-title {
+        word-break: break-word;
+        hyphens: auto;
+    }
+    /* Секции без переполнения */
+    .elementor-section-full_width {
+        overflow-x: hidden;
+    }
+    /* Кнопки — удобный тач-таргет */
+    .elementor-button {
+        min-height: 44px;
+        padding-top: 12px !important;
+        padding-bottom: 12px !important;
+    }
+    /* Отступы в карточках категорий */
+    .elementor-element-271d71c5 .elementor-column {
+        margin-bottom: 15px;
+    }
+    .elementor-element-271d71c5 .elementor-widget-wrap {
+        padding: 15px !important;
+    }
+}</style>
 <style id="wpforms-css-vars-root">
 				:root {
 					--wpforms-field-border-radius: 3px;
