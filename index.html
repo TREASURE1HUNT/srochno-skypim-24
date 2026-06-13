@@ -212,6 +212,49 @@ input[name="field_summ_copy"]::after {
     margin-top: 10px !important;
 }
 
+/* Social contact buttons */
+.social-contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 50px;
+    color: #fff !important;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+    margin: 5px 0;
+}
+.social-contact-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.btn-telegram {
+    background: linear-gradient(135deg, #0088cc, #00a0e6);
+}
+.btn-telegram:hover {
+    background: linear-gradient(135deg, #0077b5, #0099d6);
+    color: #fff !important;
+}
+.btn-whatsapp {
+    background: linear-gradient(135deg, #25D366, #128C7E);
+}
+.btn-whatsapp:hover {
+    background: linear-gradient(135deg, #20bd5a, #0e7a6b);
+    color: #fff !important;
+}
+/* Floating social buttons */
+.elementor-element-float-tg a.elementor-icon {
+    background-color: #0088cc !important;
+    color: #fff !important;
+    fill: #fff !important;
+}
+.elementor-element-float-wa a.elementor-icon {
+    background-color: #25D366 !important;
+    color: #fff !important;
+    fill: #fff !important;
+}
+
 </style>
 <style id="wpforms-css-vars-root">
 				:root {
@@ -355,6 +398,22 @@ input[name="field_summ_copy"]::after {
 					<div class="elementor-icon-wrapper">
 			<a class="elementor-icon" href="tel:+79135141122">
 			<i aria-hidden="true" class="fas fa-phone-alt"></i>			</a>
+		</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-float-tg elementor-view-stacked elementor-widget-mobile__width-initial elementor-fixed elementor-hidden-desktop elementor-hidden-tablet elementor-shape-circle elementor-widget elementor-widget-icon" data-id="float-tg" data-element_type="widget" data-settings="{&quot;_position&quot;:&quot;fixed&quot;}" data-widget_type="icon.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-icon-wrapper">
+			<a class="elementor-icon" href="https://t.me/Skoryi86" target="_blank" rel="noopener">
+			<i aria-hidden="true" class="fab fa-telegram-plane"></i>			</a>
+		</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-float-wa elementor-view-stacked elementor-widget-mobile__width-initial elementor-fixed elementor-hidden-desktop elementor-hidden-tablet elementor-shape-circle elementor-widget elementor-widget-icon" data-id="float-wa" data-element_type="widget" data-settings="{&quot;_position&quot;:&quot;fixed&quot;}" data-widget_type="icon.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-icon-wrapper">
+			<a class="elementor-icon" href="https://wa.me/79135141122" target="_blank" rel="noopener">
+			<i aria-hidden="true" class="fab fa-whatsapp"></i>			</a>
 		</div>
 				</div>
 				</div>
@@ -1882,6 +1941,18 @@ document.addEventListener('DOMContentLoaded', function() {
 											<a href="tel:+79135141122">
 
 											<span class="elementor-icon-list-text">+79135141122</span>
+											</a>
+									</li>
+							<li class="elementor-icon-list-item">
+											<a href="https://t.me/Skoryi86" target="_blank" rel="noopener" class="social-contact-btn btn-telegram">
+							<i aria-hidden="true" class="fab fa-telegram-plane"></i>											
+											<span class="elementor-icon-list-text">Telegram @Skoryi86</span>
+											</a>
+									</li>
+							<li class="elementor-icon-list-item">
+											<a href="https://wa.me/79135141122" target="_blank" rel="noopener" class="social-contact-btn btn-whatsapp">
+							<i aria-hidden="true" class="fab fa-whatsapp"></i>											
+											<span class="elementor-icon-list-text">Макс (WhatsApp)</span>
 											</a>
 									</li>
 						</ul>
