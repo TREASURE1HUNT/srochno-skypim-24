@@ -1,0 +1,10 @@
+				@font-face {
+					font-family: 'gillroi';
+					src: url('assets/wp-content/uploads/useanyfont/6860gillroi.woff2') format('woff2'),
+						url('assets/wp-content/uploads/useanyfont/6860gillroi.woff') format('woff');
+					  font-display: auto;
+				}
+
+				.gillroi{font-family: 'gillroi' !important;}
+
+		

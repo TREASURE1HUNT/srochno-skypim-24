@@ -1,0 +1,49 @@
+[build]
+  command = "echo 'Static site - no build required'"
+  functions = "netlify/functions"
+  publish = "."
+
+[[redirects]]
+  from = "/wp-admin/admin-ajax.php"
+  to = "/.netlify/functions/submit-form"
+  status = 200
+
+[[redirects]]
+  from = "/wp-content/*"
+  to = "/assets/wp-content/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/wp-includes/*"
+  to = "/assets/wp-includes/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/wp-json/*"
+  to = "/thankyou.html"
+  status = 200
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, OPTIONS"
+    Access-Control-Allow-Headers = "*"
+
+[[headers]]
+  for = "/.netlify/functions/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "POST, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type"
+
+# ═══════════════════════════════════════════════════════════
+# Настройка переменных окружения Telegram
+# ═══════════════════════════════════════════════════════════
+# Установите в Netlify Dashboard (Site Settings → Environment variables):
+#   TELEGRAM_BOT_TOKEN = 8928279752:AAH3QZCm5dYLfi9GfH5h-L34GXa1wo2r6MA
+#   TELEGRAM_CHAT_ID   = 1042967208
+#
+# Или используйте Netlify CLI:
+#   netlify env:set TELEGRAM_BOT_TOKEN "8928279752:AAH3QZCm5dYLfi9GfH5h-L34GXa1wo2r6MA"
+#   netlify env:set TELEGRAM_CHAT_ID "1042967208"

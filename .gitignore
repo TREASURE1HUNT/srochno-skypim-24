@@ -1,0 +1,13 @@
+﻿# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+
+# IDE
+.idea/
+.vscode/
+
+# Original source files (not needed for the site)
+original-assets/

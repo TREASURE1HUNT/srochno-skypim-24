@@ -1,0 +1,355 @@
+/* Progress bars — работают без Elementor JS chunks */
+.elementor-progress-bar[data-max] {
+  width: calc(var(--progress, 0) * 1%);
+}
+.elementor-progress-bar[data-max="25"] { --progress: 25; }
+.elementor-progress-bar[data-max="50"] { --progress: 50; }
+.elementor-progress-bar[data-max="75"] { --progress: 75; }
+.elementor-progress-bar[data-max="100"] { --progress: 100; }
+
+/* Мобильное меню */
+.elementor-nav-menu--dropdown.elementor-nav-menu__container {
+  display: none;
+}
+.elementor-nav-menu--dropdown.elementor-nav-menu__container.is-open {
+  display: block;
+}
+
+/* Попапы */
+.site-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 99998;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.site-popup-overlay.is-visible {
+  display: flex;
+}
+.site-popup-overlay .elementor-location-popup {
+  position: relative;
+  z-index: 99999;
+  max-height: 90vh;
+  overflow-y: auto;
+  max-width: 560px;
+  width: 100%;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+}
+.site-popup-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  z-index: 100000;
+  background: none;
+  border: none;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  color: #333;
+  padding: 4px 8px;
+}
+
+/* Мультистеп-форма */
+.pafe-multi-step-form {
+  visibility: visible !important;
+}
+.pafe-multi-step-form .elementor-top-section.elementor-section {
+  display: none;
+}
+.pafe-multi-step-form .elementor-top-section.elementor-section.is-active {
+  display: block;
+}
+.pafe-multi-step-form .elementor-invisible {
+  visibility: visible !important;
+  animation: none !important;
+}
+
+/* Сообщения формы */
+.elementor-message-success.is-visible,
+.elementor-message-danger.is-visible {
+  display: block !important;
+  margin-top: 16px;
+  padding: 12px 16px;
+  border-radius: 4px;
+}
+.elementor-message-success.is-visible {
+  background: #d4edda;
+  color: #155724;
+}
+.elementor-message-danger.is-visible {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+/* ════════════════════════════════════════════════
+   МОБИЛЬНЫЕ УЛУЧШЕНИЯ (max-width: 767px)
+   ════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+
+  /* --- Общие --- */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* --- Герой-секция --- */
+  .elementor-element-71c73b55 {
+    padding: 15% 0% 8% 0% !important;
+  }
+
+  /* Заголовки — компактнее */
+  .elementor-heading-title {
+    word-break: break-word;
+    hyphens: auto;
+  }
+
+  /* Hero — "Срочный выкуп авто" */
+  .elementor-element-60e71763 .elementor-heading-title {
+    font-size: 26px !important;
+  }
+  .elementor-element-d47bbc7 .elementor-heading-title {
+    font-size: 32px !important;
+  }
+  .elementor-element-7922085 .elementor-heading-title {
+    font-size: 16px !important;
+  }
+
+  /* Hero — изображение на мобильных */
+  .elementor-element-b5da64f img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin: 10px 0;
+  }
+
+  /* Преимущества (деньги/бесплатно/гарантия) — в ряд на мобильных */
+  .elementor-element-6c3af3e3,
+  .elementor-element-beaf4f5,
+  .elementor-element-f68587b {
+    width: 100% !important;
+    margin-bottom: 10px !important;
+  }
+  .elementor-element-6c3af3e3 .elementor-icon-box-wrapper,
+  .elementor-element-beaf4f5 .elementor-icon-box-wrapper,
+  .elementor-element-f68587b .elementor-icon-box-wrapper {
+    flex-direction: row !important;
+    align-items: center !important;
+  }
+  .elementor-element-6c3af3e3 .elementor-icon-box-icon,
+  .elementor-element-beaf4f5 .elementor-icon-box-icon,
+  .elementor-element-f68587b .elementor-icon-box-icon {
+    margin-right: 12px !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* --- Кнопки в герое --- */
+  .elementor-element-bd1c59d,
+  .elementor-element-2ae5cc13 {
+    width: 100% !important;
+    margin-bottom: 10px !important;
+  }
+  .elementor-element-bd1c59d .elementor-button,
+  .elementor-element-2ae5cc13 .elementor-button {
+    width: 100% !important;
+    font-size: 14px !important;
+    padding: 14px 20px !important;
+  }
+
+  /* --- Навигация --- */
+  .elementor-element-36ae6c46 .elementor-nav-menu--dropdown {
+    z-index: 9999 !important;
+  }
+  .elementor-nav-menu--dropdown {
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  /* --- Категории (4 карточки: отечественные, иномарки, битые, коммерческие) --- */
+  .elementor-element-271d71c5 .elementor-column {
+    width: 100% !important;
+    margin-bottom: 16px !important;
+  }
+  .elementor-element-271d71c5 .elementor-widget-wrap {
+    padding: 20px !important;
+  }
+  .elementor-element-271d71c5 .elementor-widget-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+  }
+  .elementor-element-271d71c5 .elementor-heading-title {
+    font-size: 20px !important;
+    text-align: center !important;
+  }
+  .elementor-element-271d71c5 .elementor-button {
+    width: 100% !important;
+  }
+
+  /* --- Секция "Продайте авто за 4 шага" --- */
+  .elementor-element-3a2506d .elementor-heading-title {
+    font-size: 26px !important;
+  }
+  .elementor-element-11eab8c .elementor-heading-title {
+    font-size: 22px !important;
+  }
+
+  /* --- Мультистеп-форма --- */
+  .elementor-element-554898a3 .elementor-heading-title {
+    font-size: 18px !important;
+  }
+  .elementor-element-6db243fa .elementor-heading-title {
+    font-size: 18px !important;
+  }
+  .elementor-element-da373de .elementor-heading-title {
+    font-size: 18px !important;
+  }
+  .elementor-element-623aeda4 .elementor-heading-title {
+    font-size: 18px !important;
+  }
+
+  /* Поля формы на мобильных */
+  .pafe-form-builder-field .elementor-field {
+    font-size: 16px !important;
+    padding: 12px 16px !important;
+  }
+  .elementor-field-group {
+    margin-bottom: 12px !important;
+  }
+
+  /* Кнопки формы (Назад / Далее / Узнать стоимость) */
+  .but {
+    width: 48% !important;
+    display: inline-block !important;
+  }
+  .but .elementor-button {
+    width: 100% !important;
+    font-size: 14px !important;
+    padding: 14px 10px !important;
+    min-height: 48px;
+  }
+
+  /* --- Шаги "выкуп авто в день обращения" --- */
+  .elementor-element-73ae5e8c img,
+  .elementor-element-14582dfa img,
+  .elementor-element-31c76625 img,
+  .elementor-element-740f4025 img {
+    width: 80px !important;
+    height: auto !important;
+  }
+  .elementor-element-142615fe,
+  .elementor-element-15bd5642,
+  .elementor-element-33fab287,
+  .elementor-element-12dba62f {
+    width: 50% !important;
+    text-align: center !important;
+    margin-bottom: 20px !important;
+  }
+  .elementor-element-142615fe .elementor-heading-title,
+  .elementor-element-15bd5642 .elementor-heading-title,
+  .elementor-element-33fab287 .elementor-heading-title,
+  .elementor-element-12dba62f .elementor-heading-title {
+    font-size: 16px !important;
+  }
+  .elementor-element-174081bd .elementor-heading-title,
+  .elementor-element-57bf4293 .elementor-heading-title,
+  .elementor-element-3b037b55 .elementor-heading-title,
+  .elementor-element-3961ce8d .elementor-heading-title {
+    font-size: 13px !important;
+    font-weight: 400 !important;
+  }
+
+  /* --- Карусель "выкупленные авто" --- */
+  .list-carousel-slick .slick-slide img {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* --- Секция "Контакты" --- */
+  .elementor-element-363dcf0 .elementor-heading-title {
+    font-size: 26px !important;
+    text-align: center !important;
+  }
+  .elementor-element-4743332 .elementor-heading-title {
+    font-size: 20px !important;
+  }
+  .elementor-element-4c5b0ada .elementor-heading-title {
+    font-size: 12px !important;
+    text-align: center !important;
+    line-height: 1.4 !important;
+  }
+
+  /* --- Попапы --- */
+  .site-popup-overlay .elementor-location-popup {
+    max-width: 95% !important;
+    max-height: 85vh !important;
+    border-radius: 16px !important;
+  }
+  .elementor-4882 .elementor-element-daf9e9a .elementor-icon-box-title {
+    font-size: 24px !important;
+  }
+
+  /* --- Футер: контакты --- */
+  .elementor-element-88191f4 .elementor-icon-list-text {
+    font-size: 18px !important;
+  }
+
+  /* --- Переключатель меню (бургер) --- */
+  .elementor-menu-toggle {
+    padding: 12px !important;
+    border-radius: 8px !important;
+    z-index: 999 !important;
+  }
+
+  /* Пункты меню — крупные тач-цели */
+  .elementor-nav-menu--dropdown .elementor-item {
+    padding: 14px 20px !important;
+    font-size: 16px !important;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+
+  /* Скрываем декоративные стрелки на кнопках формы на совсем узких экранах */
+  @media (max-width: 400px) {
+    .but:before {
+      display: none !important;
+    }
+  }
+
+  /* --- Плавный скролл для якорей --- */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* --- Фикс для Elementor секций без переполнения --- */
+  .elementor-section {
+    overflow-x: hidden;
+  }
+
+  /* --- Убираем гигантские отступы у секций на мобильных --- */
+  .elementor-top-section {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* --- Фикс карусели (dots не перекрывают контент) --- */
+  .slick-dots {
+    position: relative !important;
+    bottom: 0 !important;
+    margin-top: 10px !important;
+  }
+
+  /* --- Селекты формы — читаемый размер --- */
+  .elementor-field-textual {
+    font-size: 16px !important;
+  }
+
+  /* --- Отступ у "консультация / осмотр / документы / оплата" на мобильных --- */
+  .elementor-element-a86611e {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+}

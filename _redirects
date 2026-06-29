@@ -1,0 +1,4 @@
+/wp-admin/admin-ajax.php  /.netlify/functions/submit-form  200
+/wp-content/*  /assets/wp-content/:splat  200
+/wp-includes/*  /assets/wp-includes/:splat  200
+/wp-json/*  /thankyou.html  200
