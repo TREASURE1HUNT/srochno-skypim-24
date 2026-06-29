@@ -120,13 +120,28 @@
   .elementor-element-b5da64f img {
     width: 100%;
     height: auto;
+    max-height: 220px;
+    object-fit: cover;
     border-radius: 12px;
-    margin: 10px 0;
+    margin: 0 0 8px 0;
     display: block;
   }
   .elementor-element-b5da64f > .elementor-widget-container {
     margin: 0 !important;
     padding: 0 !important;
+  }
+
+  /* предотвращаем наложение текста героя */
+  .elementor-element-21fbb324 .elementor-widget-wrap {
+    gap: 4px !important;
+  }
+  .elementor-element-1b9acb58,
+  .elementor-element-60e71763,
+  .elementor-element-d47bbc7 {
+    margin-bottom: 2px !important;
+  }
+  .elementor-element-d47bbc7 .elementor-heading-title {
+    line-height: 1.1 !important;
   }
 
   /* Преимущества (деньги/бесплатно/гарантия) — в ряд на мобильных */
@@ -162,13 +177,9 @@
     padding: 14px 20px !important;
   }
 
-  /* --- Навигация --- */
-  .elementor-element-36ae6c46 .elementor-nav-menu--dropdown {
-    z-index: 9999 !important;
-  }
-  .elementor-nav-menu--dropdown {
-    max-height: 80vh;
-    overflow-y: auto;
+  /* --- Навигация на мобильных --- */
+  .elementor-element-36ae6c46 {
+    display: none !important;
   }
 
   /* --- Категории (4 карточки: отечественные, иномарки, битые, коммерческие) --- */
