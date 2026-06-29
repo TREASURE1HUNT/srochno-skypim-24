@@ -133,14 +133,25 @@
 
   /* предотвращаем наложение текста героя */
   .elementor-element-21fbb324 .elementor-widget-wrap {
-    gap: 4px !important;
+    gap: 2px !important;
   }
-  .elementor-element-1b9acb58,
-  .elementor-element-60e71763,
-  .elementor-element-d47bbc7 {
-    margin-bottom: 2px !important;
+  .elementor-element-1b9acb58 > .elementor-widget-container {
+    margin: 0 !important;
+  }
+  .elementor-element-60e71763 > .elementor-widget-container {
+    margin: 0 !important;
+  }
+  .elementor-element-d47bbc7 > .elementor-widget-container {
+    margin: 0 !important;
+  }
+  .elementor-element-1b9acb58 .elementor-heading-title {
+    font-size: 18px !important;
+  }
+  .elementor-element-60e71763 .elementor-heading-title {
+    font-size: 22px !important;
   }
   .elementor-element-d47bbc7 .elementor-heading-title {
+    font-size: 24px !important;
     line-height: 1.1 !important;
   }
 
