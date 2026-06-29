@@ -27,11 +27,7 @@
     toggle.addEventListener('click', function () {
       var expanded = toggle.getAttribute('aria-expanded') === 'true';
       toggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-      var menu = toggle.closest('.elementor-widget-nav-menu');
-      if (menu) {
-        var dropdown = menu.querySelector('.elementor-nav-menu--dropdown');
-        if (dropdown) dropdown.classList.toggle('is-open', !expanded);
-      }
+      toggle.classList.toggle('elementor-active', !expanded);
     });
   });
 
